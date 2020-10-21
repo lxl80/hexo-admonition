@@ -17,7 +17,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
         admonitionContent += '\n';
       }
 
-      if (p3.replace(/\s+/g, '') === '""') {
+      if (p3.replace(/\s+/g, '') === '""' || p3.replace(/\s+/g, '') === '') {
         return '<div class="admonition ' + p2.toLowerCase() + '">' + md.render(admonitionContent) + '</div>\n\n';
       } else {
         p3 = p3.trim() === '' ? p2 : p3.replace(/(^ |")|("| $)/g, '');
