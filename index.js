@@ -1,7 +1,9 @@
+'use strict';
+
 var md = require('markdown-it')('commonmark');
 
 hexo.extend.filter.register('before_post_render', function (data) {
-  let strRegExp = '(?<=^\n)(^!!! *)(note|info|todo|warning|attention|caution|failure|missing|fail|error)(.*\n)((^ {4}.*\n|^\n)+)';
+  let strRegExp = /(<\!-- *)(note|info|todo|warning|attention|caution|failure|missing|fail|error) (.*?)--> *\n((.*\n)*?)(<\!-- end -->\n)/;
   let admonitionRegExp = new RegExp(strRegExp, 'gmi');
 
   let strData;
@@ -14,10 +16,10 @@ hexo.extend.filter.register('before_post_render', function (data) {
       let admonitionContent = '';
       for (const v of p4) {
         admonitionContent += v.trim();
-        admonitionContent += '\n';
+        admonitionContent += '\n';3
       }
 
-      if (p3.replace(/\s+/g, '') === '""') {
+      if (p3.replace(/\s+/g, '') === '""' || p3.replace(/\s+/g, '') === '') {
         return '<div class="admonition ' + p2.toLowerCase() + '">' + md.render(admonitionContent) + '</div>\n\n';
       } else {
         p3 = p3.trim() === '' ? p2 : p3.replace(/(^ |")|("| $)/g, '');
