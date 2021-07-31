@@ -84,7 +84,7 @@ Hexo-admonition 遵循一种简单的语法：每个块都以 `!!!` 开头，然
 在 `hexo-admonition` 内部，还可以嵌套标准 Markdown 标签，例如：
 
 ```text
-!!! node "嵌套链接及引用块"
+!!! note "嵌套链接及引用块"
     欢迎访问我的博客链接：[悟尘纪](https://www.lixl.cn)
 
     >这里嵌套一行引用信息。
